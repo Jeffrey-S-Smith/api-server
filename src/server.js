@@ -1,16 +1,16 @@
 'use strict';
 
 const express = require('express');
-// const foodRouter = require('./routes/food');
-// const logger = require('./middleware/logger');
+const Food = require('./routes/food');
+const logger = require('./middleware/logger');
 
 
 
 const app = express();
-
+app.get("/",(req,res)=> res.send('hello'))
 app.use(express.json());
-// app.use(logger);
-// app.use(foodRouter);
+app.use(logger);
+app.use(Food);
 
 
 // my error messages
@@ -25,8 +25,8 @@ app.get('/', (request, response) => {
 
 
 // server error handling
-// app.get('*', notFound);
-// app.use(serverError);
+app.get('*', notFound);
+app.use(serverError);
 
 module.exports = {
   start: (port) => {
