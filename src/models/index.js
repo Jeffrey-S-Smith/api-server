@@ -7,16 +7,28 @@ const { Sequelize, DataTypes } = require('sequelize');
 
 const DATABASE_URL = process.env.NODE_ENV === 'test' ? 'sqlite::memory:' : process.env.DATABASE_URL;
 
-let herokuOptions = {
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false,
-    },
-  },
-};
+// let herokuOptions = {
+//   dialectOptions: {
+//     ssl: {
+//       require: true,
+//       rejectUnauthorized: false,
+//     },
+//   },
+// };
 
-let sequelize = new Sequelize(DATABASE_URL, herokuOptions);
+const sequelizeOptions =
+  process.env.NODE_ENV === 'production'
+    ? {
+        dialectOptions: {
+          ssl: {
+            require: true,
+            rejectUnauthorized: false,
+          },
+        },
+      }
+    : {};
+
+let sequelize = new Sequelize(DATABASE_URL, sequelizeOptions);
 
 const FoodModel = foodSchema(sequelize, DataTypes);
 
