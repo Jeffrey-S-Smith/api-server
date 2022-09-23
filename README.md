@@ -5,8 +5,8 @@
 Link does not deploy went on Remo talked to TA told me to do this. Did not work.
 
 [Heroku](https://smith-api-server.herokuapp.com/)
-[Heroku error](img/herkerror.png)
-[Heroku says deployed](img/lab4her.png)
+![Heroku error](img/herkerror.png)
+![Heroku says deployed](img/lab4her.png)
 
 ## Deployment
 How do I install the app or library?
