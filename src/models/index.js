@@ -1,7 +1,7 @@
 'use strict';
 const foodSchema = require('./food.js');
 
-// const Collection = require('./Collection.js');
+const Collection = require('./collection-class.js');
 
 const { Sequelize, DataTypes } = require('sequelize');
 
@@ -15,7 +15,7 @@ let herokuOptions = {
     },
   },
 };
-console.log(DATABASE_URL);
+
 let sequelize = new Sequelize(DATABASE_URL, herokuOptions);
 
 const FoodModel = foodSchema(sequelize, DataTypes);
@@ -23,5 +23,5 @@ const FoodModel = foodSchema(sequelize, DataTypes);
 
 module.exports = {
   db: sequelize,
-  Food: FoodModel,
+  Food: new Collection(FoodModel),
 };
